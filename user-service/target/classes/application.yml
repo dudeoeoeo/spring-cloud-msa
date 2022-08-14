@@ -1,0 +1,17 @@
+server:
+  port: 0 # 0 == port 를 랜덤으로 실행
+
+spring:
+  application:
+    name: user-service
+
+# eureka.client.fetch-registry=ture 는 EUREKA 서버로부터 인스턴스들의 정보를 주기적으로
+# 가져올 것인지를 설정하는 속성이다. true 로 설정하면, 갱신된 정보를 받겠다는 설정이다.
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka # eureka endpoint 에 현재 이 마이크로서비스 정보를 입력하겠다
