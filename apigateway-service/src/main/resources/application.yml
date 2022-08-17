@@ -1,0 +1,43 @@
+server:
+  port: 8000
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+spring:
+  application:
+    name: apigateway-service
+  cloud:
+    gateway:
+      default-filters:
+        - name: GlobalFilter
+          args:
+            baseMessage: Spring Cloud Gateway Global Filter
+            preLogger: true
+            postLogger: true
+      routes:
+        - id: first-service
+          uri: lb://MY-FIRST-SERVICE # Eureka Server 에 등록된 MY-FIRST-SERVICE 를 요청
+          predicates: # 조건절 Path == /first-service/** 경우 first-service 요청
+            - Path=/first-service/**
+          filters:
+#            - AddRequestHeader=first-request, first-requests-header2
+#            - AddRequestHeader=first-response, first-response-header2
+            - CustomFilter
+        - id: second-service
+          uri: lb://MY-SECOND-SERVICE
+          predicates:
+            - Path=/second-service/**
+          filters:
+#            - AddRequestHeader=second-request, second-requests-header2
+#            - AddRequestHeader=second-response, second-response-header2
+            - name: CustomFilter
+            - name: LoggingFilter
+              args:
+                baseMessage: Hi, Logging
+                preLogger: true
+                postLogger: true
