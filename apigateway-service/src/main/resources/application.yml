@@ -20,13 +20,15 @@ spring:
             preLogger: true
             postLogger: true
       routes:
-        - id: first-service
-          uri: lb://MY-FIRST-SERVICE # Eureka Server 에 등록된 MY-FIRST-SERVICE 를 요청
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/**
+        - id: user-service
+          uri: lb://USER-SERVICE
           predicates: # 조건절 Path == /first-service/** 경우 first-service 요청
             - Path=/first-service/**
           filters:
-#            - AddRequestHeader=first-request, first-requests-header2
-#            - AddRequestHeader=first-response, first-response-header2
             - CustomFilter
         - id: second-service
           uri: lb://MY-SECOND-SERVICE

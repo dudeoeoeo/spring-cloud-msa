@@ -1,6 +1,7 @@
 package com.example.userservice.controller;
 
 import com.example.userservice.dto.UserDto;
+import com.example.userservice.jpa.UserEntity;
 import com.example.userservice.service.UserService;
 import com.example.userservice.vo.Greeting;
 import com.example.userservice.vo.RequestUser;
@@ -13,30 +14,47 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
-@RequestMapping("/")
+@RequestMapping("/user-service")
 public class UserController {
 
     private UserService userService;
     private Environment env;
-    private Greeting greeting;
 
     @Autowired
-    public UserController(Environment env, Greeting greeting, UserService userService) {
+    public UserController(Environment env, UserService userService) {
         this.env = env;
-        this.greeting = greeting;
         this.userService = userService;
     }
 
     @GetMapping("/health_check")
     public String status() {
-        return "It's Working in User Service";
+        return String.format("It's Working in User Service on PORT %s", env.getProperty("local.server.port"));
     }
 
-    @GetMapping("/greeting")
-    public String greeting() {
-//        return env.getProperty("greeting.message");
-        return greeting.getMessage();
+    @GetMapping("/users")
+    public ResponseEntity<List<ResponseUser>> getUsers() {
+        final List<UserEntity> userList = userService.getUserByAll();
+
+        List<ResponseUser> results = new ArrayList<>();
+
+        userList.forEach(u -> {
+            results.add(new ModelMapper().map(u, ResponseUser.class));
+        });
+
+        return ResponseEntity.status(HttpStatus.OK).body(results);
+    }
+
+    @GetMapping("/users/{userId}")
+    public ResponseEntity<ResponseUser> getUser(@PathVariable String userId) {
+        final UserDto userDto = userService.getUserByUserId(userId);
+
+        ResponseUser result = new ModelMapper().map(userDto, ResponseUser.class);
+
+        return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
     @PostMapping("/users")
