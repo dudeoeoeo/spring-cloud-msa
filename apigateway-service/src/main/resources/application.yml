@@ -24,12 +24,19 @@ spring:
           uri: lb://USER-SERVICE
           predicates:
             - Path=/user-service/**
-        - id: user-service
-          uri: lb://USER-SERVICE
+
+        - id: catalog-service
+          uri: lb://CATALOG-SERVICE
+          predicates:
+            - Path=/catalog-service/**
+
+        - id: first-service
+          uri: lb://MY-FIRST-SERVICE
           predicates: # 조건절 Path == /first-service/** 경우 first-service 요청
             - Path=/first-service/**
           filters:
             - CustomFilter
+
         - id: second-service
           uri: lb://MY-SECOND-SERVICE
           predicates:
