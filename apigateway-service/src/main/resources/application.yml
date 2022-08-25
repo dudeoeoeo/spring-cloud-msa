@@ -46,6 +46,7 @@ spring:
           filters:
             - RemoveRequestHeader=Cookie
             - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+            - AuthorizationHeaderFilter  # login 과 users 를 제외한 모든 요청은 헤더 체크
 #        - id: user-service
 #          uri: lb://USER-SERVICE
 #          predicates:
@@ -81,3 +82,7 @@ spring:
                 baseMessage: Hi, Logging
                 preLogger: true
                 postLogger: true
+
+
+token:
+  secret: user_token
