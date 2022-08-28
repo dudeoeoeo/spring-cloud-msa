@@ -47,6 +47,15 @@ spring:
             - RemoveRequestHeader=Cookie
             - RewritePath=/user-service/(?<segment>.*), /$\{segment}
             - AuthorizationHeaderFilter  # login 과 users 를 제외한 모든 요청은 헤더 체크
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/actuator/**
+            - Method=GET,POST
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+
 #        - id: user-service
 #          uri: lb://USER-SERVICE
 #          predicates:
@@ -83,6 +92,11 @@ spring:
                 preLogger: true
                 postLogger: true
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans, httptrace # httptrace 를 사용하기 위해 Application 에 @Bean 하나를 추가한다.
 
-token:
-  secret: user_token
+#token:
+#  secret: user_token
