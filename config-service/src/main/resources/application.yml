@@ -1,0 +1,31 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-service
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: file:///${user.home}/Desktop/spring_cloud_msa_native_file
+#          search-locations: file://${user.home}/Desktop/spring_cloud_msa_native_file # mac
+        git:
+#          uri: file:///C:\spring_cloud_msa
+          uri: https://github.com/dudeoeoeo/spring-cloud-msa
+          # 만약 private repo 를 생성했다면 username 과 password 를 입력해줘야 한다
+#          username: [username]
+#          password: [private token]
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, busrefresh
