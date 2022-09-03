@@ -13,3 +13,6 @@
 
 # yml 파일 암·복호화를 위한 설정
  - https://ajar-kilometer-580.notion.site/0b145808bbf94a3cb63950b790471415
+
+# RestTemplate 을 사용한 api 통신
+ - https://ajar-kilometer-580.notion.site/RestTemplate-9dcd91f298e14328926bde60fe7dbd17
