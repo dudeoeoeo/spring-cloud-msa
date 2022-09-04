@@ -16,3 +16,9 @@
 
 # RestTemplate 을 사용한 api 통신
  - https://ajar-kilometer-580.notion.site/RestTemplate-9dcd91f298e14328926bde60fe7dbd17
+
+# Feign Client 를 사용한 api 통신
+ - https://ajar-kilometer-580.notion.site/FeignClient-1154c28927b14fc98b651a184ec410ce
+
+# 데이터 동기화 문제
+ - https://ajar-kilometer-580.notion.site/5a2bcc26f45f4233b8424314827c9e4d
