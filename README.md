@@ -22,3 +22,6 @@
 
 # 데이터 동기화 문제
  - https://ajar-kilometer-580.notion.site/5a2bcc26f45f4233b8424314827c9e4d
+
+# Apache Kafka
+ - https://ajar-kilometer-580.notion.site/Apache-Kafka-11c0a88160cc4bf0872bc39b0ebe77e0
