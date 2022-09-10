@@ -25,3 +25,6 @@
 
 # Apache Kafka
  - https://ajar-kilometer-580.notion.site/Apache-Kafka-11c0a88160cc4bf0872bc39b0ebe77e0
+
+# 마이크로 서비스 데이터 동기화
+ - https://ajar-kilometer-580.notion.site/1-ace552f93aa94ce7a09b435f96d2e201
