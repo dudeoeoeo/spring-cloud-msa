@@ -31,3 +31,6 @@
 
 # Multi Server 데이터 동기화
  - https://ajar-kilometer-580.notion.site/2-b546887776564e009d63c1019281f627
+
+# Circuit Breaker
+ - https://ajar-kilometer-580.notion.site/Microservice-40b3d3ecbafb44b9a5ba9cc157c4d67f
