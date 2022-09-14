@@ -34,3 +34,6 @@
 
 # Circuit Breaker
  - https://ajar-kilometer-580.notion.site/Microservice-40b3d3ecbafb44b9a5ba9cc157c4d67f
+
+# Zipkin
+ - https://ajar-kilometer-580.notion.site/Microservice-c6bf134d574d479f87b4a9b5f7df10eb
