@@ -102,7 +102,7 @@ management:
     web:
       exposure:
         # httptrace 를 사용하기 위해 Application 에 @Bean 하나를 추가한다.
-        include: refresh, health, beans, httptrace, busrefresh
+        include: refresh, health, beans, httptrace, busrefresh, info, metrics, prometheus
 
 #token:
 #  secret: user_token
